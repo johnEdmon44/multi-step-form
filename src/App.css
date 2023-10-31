@@ -45,6 +45,19 @@ body {
 }
 
 
+.active-form {
+  display: block !important;
+}
+
+
+.step-form {
+  height: 40rem;
+  margin: 1rem 0rem 1rem 0rem;
+  position: relative;
+  width: 30rem;
+}
+
+
 /*///////////////////////////////////////////////////////////////////// side bar */
 .step {
   display: flex;
@@ -143,6 +156,7 @@ body {
   padding-top: 3rem;
   position: absolute;
   height: 40rem;
+  display: none;
 }
 
 
@@ -179,12 +193,4 @@ body {
   right: 0;
   bottom: 3rem;
   cursor: pointer;
-}
-
-
-.step-form {
-  height: 40rem;
-  margin: 1rem 0rem 1rem 0rem;
-  position: relative;
-  width: 30rem;
 }

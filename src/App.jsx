@@ -88,7 +88,7 @@ function App() {
       <div className='step-form'>
 
         {/* PERSONAL INFO */}
-        <div className='personal-info'>
+        <div className={`personal-info ${step1 ? '': 'active-form'}`}>
           <h1>Personal info</h1>
           <p>Please provide your name, email address, and phone number</p>
 

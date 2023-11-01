@@ -16,6 +16,14 @@ function App() {
   const [step3, setStep3] = useState(false);
   const [step4, setStep4] = useState(false);
 
+  const [selectedPlan, setSelectedPlan] = useState({value: 'Arcade', monthly: 9});
+  const isMonthly = true;
+  const planOption = [
+    {value: 'Arcade', monthly: 9, yearly: 90, img: '/public/assets/images/icon-arcade.svg'},
+    {value: 'Advanced', monthly: 12, yearly: 120, img: '/public/assets/images/icon-advanced.svg'},
+    {value: 'Pro', monthly: 15, yearly: 150, img: '/public/assets/images/icon-pro.svg'}
+  ]
+ 
 
   const validateInput = () => {
     let isValid = true;
@@ -43,6 +51,24 @@ function App() {
   
     if (isValid) {
       setStep1(true);
+    }
+  }
+
+
+  const handleSelectedPlan = (option) => {
+    if(isMonthly) {
+      setSelectedPlan({value: option.value, monthly: option.monthly});
+      console.log(selectedPlan);
+    } else {
+      setSelectedPlan({value: option.value, yearly: option.yearly});
+      console.log(selectedPlan);
+    }
+  }
+
+
+  const handleGoBack = () => {
+    if (step1) {
+      setStep1(false);
     }
   }
 
@@ -88,9 +114,9 @@ function App() {
       <div className='step-form'>
 
         {/* PERSONAL INFO */}
-        <div className={`personal-info ${step1 ? '': 'active-form'}`}>
-          <h1>Personal info</h1>
-          <p>Please provide your name, email address, and phone number</p>
+        <div className={`form-section ${step1 ? '' : 'active-form'}`}>
+          <h1 className='header'>Personal info</h1>
+          <p className='description'>Please provide your name, email address, and phone number</p>
 
           <form>
             <div className='form-input'>
@@ -111,16 +137,40 @@ function App() {
               <span>{phoneError}</span>
             </div>
 
-            <button className='next-btn' onClick={(e) => {
-              e.preventDefault();
-              validateInput();
-            }}>Next Step</button>
+            <div className='buttons'>
+              <button className='next-btn' onClick={(e) => {
+                e.preventDefault();
+                validateInput();
+              }}>Next Step</button>
+            </div>
+
           </form>
         </div>
 
 
-        <div>
+        {/* SELECT PLAN */}
+        <div className={`form-section ${step1 ? 'active-form' : ''}`}>
+          <h1 className='header'>Select your plan</h1>
+          <p className='description'>You have the option of monthly or yearly billing.</p>
 
+          <div className='plan-container'>
+            {planOption.map((option) => (
+              <button
+              key={option.value}
+              className={`plan-buttons ${selectedPlan.value === option.value ? 'selected-plan': ''}`}
+              onClick={() => handleSelectedPlan(option)}
+              >
+                <img src={option.img} alt={option.value}></img>
+                <span>{option.value}</span>
+                <span>{isMonthly? `${option.monthly}/mo`: `${option.yearly}/yr`}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className='buttons'>
+            <button className='prev-btn' onClick={handleGoBack}>Go back</button>
+            <button className='next-btn'>Next step</button>
+          </div>
         </div>
       </div>
     </section>

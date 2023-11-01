@@ -54,7 +54,68 @@ body {
   height: 40rem;
   margin: 1rem 0rem 1rem 0rem;
   position: relative;
-  width: 30rem;
+  width: 35rem;
+}
+
+
+.header {
+  color: var(--primary-marine-blue);
+  font-size: 36px;
+  margin-bottom: .5rem;
+}
+
+
+.description {
+  color: var(--neutral-cool-gray);
+  margin-bottom: 3rem;
+}
+
+
+.form-section {
+  margin: 1rem 5rem 1rem 0;
+  padding-top: 3rem;
+  position: absolute;
+  height: 40rem;
+  display: none;
+}
+
+
+
+.next-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  background-color: var(--primary-marine-blue);
+  color: var(--neutral-light-gray);
+  padding: 15px 20px 15px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+.prev-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--neutral-cool-gray);
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  align-items: center;
+  bottom: 3rem;
+  width: 100%;
 }
 
 
@@ -132,31 +193,9 @@ body {
 }
 
 
-.personal-info h1 {
-  color: var(--primary-marine-blue);
-  font-size: 36px;
-  margin-bottom: .5rem;
-}
-
-
-.personal-info p {
-  color: var(--neutral-cool-gray);
-  margin-bottom: 3rem;
-}
-
-
 .form-input input::placeholder {
   font-weight: 500;
   color: var(--neutral-cool-gray);
-}
-
-
-.personal-info {
-  margin: 1rem 5rem 1rem 0;
-  padding-top: 3rem;
-  position: absolute;
-  height: 40rem;
-  display: none;
 }
 
 
@@ -178,19 +217,55 @@ body {
 }
 
 
-.next-btn {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: none;
-  outline: none;
-  background-color: var(--primary-marine-blue);
-  color: var(--neutral-light-gray);
-  padding: 15px 20px 15px 20px;
-  border-radius: 5px;
-  font-weight: 500;
-  position: absolute;
-  right: 0;
-  bottom: 3rem;
+/*/////////////////////////////////////////////////PLAN OPTIONS */
+.plan-buttons {
+  background: none;
+  border: 1px solid var(--primary-pastel-blue);
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  width: 8rem;
+}
+
+
+.plan-buttons:hover {
+  border: 1px solid var(--primary-purplish-blue);
+}
+
+
+.selected-plan {
+  border: 1px solid var(--primary-purplish-blue);
+}
+
+
+.plan-buttons img {
+  margin: 10px 0 40px 10px;
+}
+
+
+.plan-buttons span {
+  margin: 10px 0 0 10px;
+}
+
+
+.plan-buttons span:nth-child(2) {
+  font-weight: 700;
+  color: var(--primary-marine-blue);
+}
+
+
+.plan-buttons span:last-child {
+  color: var(--neutral-cool-gray);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+
+.plan-container {
+  display: flex;
+  gap: 2rem;
 }

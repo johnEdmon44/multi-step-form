@@ -17,7 +17,7 @@ function App() {
   const [step4, setStep4] = useState(false);
 
   const [selectedPlan, setSelectedPlan] = useState({value: 'Arcade', monthly: 9});
-  const isMonthly = true;
+  const [isMonthly, setIsMonthly] = useState(true);
   const planOption = [
     {value: 'Arcade', monthly: 9, yearly: 90, img: '/public/assets/images/icon-arcade.svg'},
     {value: 'Advanced', monthly: 12, yearly: 120, img: '/public/assets/images/icon-advanced.svg'},
@@ -70,6 +70,19 @@ function App() {
     if (step1) {
       setStep1(false);
     }
+  }
+
+
+  const handleSwitchTogggle = () => {
+    setIsMonthly(!isMonthly)
+
+    if(isMonthly) {
+      setSelectedPlan({value: 'Arcade', monthly: 9})
+    } else {
+      setSelectedPlan({value: "Arcade", yearly: 90})
+    }
+
+    console.log(selectedPlan)
   }
 
 
@@ -167,11 +180,24 @@ function App() {
             ))}
           </div>
 
+          <div className='switch-container'>
+            <p className={isMonthly ? 'selected-switch' : ''}>Monthly</p>
+
+            <label className="switch" >
+              <input type="checkbox" onClick={handleSwitchTogggle}/>
+              <span className="slider"></span>
+            </label>
+
+            <p className={isMonthly ? '' : 'selected-switch'}>Yearly</p>
+          </div>
+
           <div className='buttons'>
             <button className='prev-btn' onClick={handleGoBack}>Go back</button>
-            <button className='next-btn'>Next step</button>
+            <button className='next-btn' onClick={() => setStep2(true)}>Next step</button>
           </div>
         </div>
+
+
       </div>
     </section>
   )

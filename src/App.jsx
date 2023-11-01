@@ -18,6 +18,7 @@ function App() {
 
   const [selectedPlan, setSelectedPlan] = useState({value: 'Arcade', monthly: 9});
   const [isMonthly, setIsMonthly] = useState(true);
+  
   const planOption = [
     {value: 'Arcade', monthly: 9, yearly: 90, img: '/public/assets/images/icon-arcade.svg'},
     {value: 'Advanced', monthly: 12, yearly: 120, img: '/public/assets/images/icon-advanced.svg'},
@@ -99,7 +100,7 @@ function App() {
         </div>
 
         <div className='step'>
-          <p className={`step-indicator ${step1 ? 'active-step': ''}`}>2</p>
+          <p className={`step-indicator ${step1 && !step2 ? 'active-step': ''}`}>2</p>
           <div className='step-description'>
             <p>step 2</p>
             <p>select plan</p>
@@ -162,7 +163,7 @@ function App() {
 
 
         {/* SELECT PLAN */}
-        <div className={`form-section ${step1 ? 'active-form' : ''}`}>
+        <div className={`form-section ${step1 && !step2 ? 'active-form': ''}`}>
           <h1 className='header'>Select your plan</h1>
           <p className='description'>You have the option of monthly or yearly billing.</p>
 

@@ -13,7 +13,7 @@ function App() {
 
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [phoneError, setPhoneError] = useState('');``
+  const [phoneError, setPhoneError] = useState('');
 
   const [step1, setStep1] = useState(false);
   const [step2, setStep2] = useState(false);
@@ -29,7 +29,7 @@ function App() {
   ]
  
 
-  const validateInput = () => {
+  const handleAddPersonalInfo = () => {
     let isValid = true;
 
     if(personalInfo.name === '') {
@@ -55,6 +55,7 @@ function App() {
   
     if (isValid) {
       setStep1(true);
+      setSummary({...summary, personalInfo});
     }
   }
 
@@ -87,8 +88,6 @@ function App() {
     } else {
       setSelectedPlan({value: "Arcade", yearly: 90})
     }
-
-    console.log(selectedPlan)
   }
 
 
@@ -103,7 +102,12 @@ function App() {
     const checkedAddons = addons.filter((addon) => addon.checked === true);
     setSummary({...summary, checkedAddons});
     setStep3(true);
-    console.log(summary);
+  }
+
+
+  const handleAddPlan = () => {
+    setStep2(true);
+    setSummary({...summary, selectedPlan});
   }
 
 
@@ -174,7 +178,7 @@ function App() {
             <div className='buttons'>
               <button className='next-btn' onClick={(e) => {
                 e.preventDefault();
-                validateInput();
+                handleAddPersonalInfo();
               }}>Next Step</button>
             </div>
 
@@ -214,7 +218,7 @@ function App() {
 
           <div className='buttons'>
             <button className='prev-btn' onClick={handleGoBack}>Go back</button>
-            <button className='next-btn' onClick={() => setStep2(true)}>Next step</button>
+            <button className='next-btn' onClick={handleAddPlan}>Next step</button>
           </div>
         </div>
 

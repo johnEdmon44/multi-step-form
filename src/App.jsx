@@ -9,6 +9,13 @@ function App() {
     { name: "Larger storage", description: "Extra 1TB of cloud save", monthly: 2, yearly: 20, checked: false },
     { name: "Customizable profile", description: "Custom theme on your profile", monthly: 2, yearly: 20, checked: false },
   ]);
+
+  const [plans, setPlan] = useState([
+    {value: 'Arcade', monthly: 9, yearly: 90, img: '/public/assets/images/icon-arcade.svg', selected: true},
+    {value: 'Advanced', monthly: 12, yearly: 120, img: '/public/assets/images/icon-advanced.svg', selected: false},
+    {value: 'Pro', monthly: 15, yearly: 150, img: '/public/assets/images/icon-pro.svg', selected: false}
+  ]);
+  
   const [summary, setSummary] = useState({});
 
   const [nameError, setNameError] = useState('');
@@ -21,13 +28,6 @@ function App() {
   const [step4, setStep4] = useState(false);
 
   const [isMonthly, setIsMonthly] = useState(true);
-  
-  const planOption = [
-    {value: 'Arcade', monthly: 9, yearly: 90, img: '/public/assets/images/icon-arcade.svg'},
-    {value: 'Advanced', monthly: 12, yearly: 120, img: '/public/assets/images/icon-advanced.svg'},
-    {value: 'Pro', monthly: 15, yearly: 150, img: '/public/assets/images/icon-pro.svg'}
-  ]
- 
 
   const handleAddPersonalInfo = () => {
     let isValid = true;
@@ -60,13 +60,25 @@ function App() {
   }
 
 
-  const handleSelectedPlan = (option) => {
-    if(isMonthly) {
-      setSelectedPlan({value: option.value, monthly: option.monthly});
-      console.log(selectedPlan);
-    } else {
-      setSelectedPlan({value: option.value, yearly: option.yearly});
-      console.log(selectedPlan);
+  const handleSelectedPlan = (selected) => {
+    const updatePlans = plans.map((plan) => {
+      plan.selected = plan.value === selected.value;
+      return plan;
+    });
+
+    setPlan(updatePlans);
+  }
+
+
+  const renderSelectedPlan = () => {
+    const findPlan = plans.find(plan => plan.selected);
+
+    if(findPlan) {
+      if(isMonthly) {
+        return findPlan.monthly;
+      } else {
+        return findPlan.yearly;
+      }
     }
   }
 
@@ -114,7 +126,8 @@ function App() {
 
 
   const totalPrice = () => {
-    const planPrice = isMonthly ? selectedPlan.monthly: selectedPlan.yearly;
+    const findPlan = plans.find(plan => plan.selected);
+    const planPrice = isMonthly ? findPlan.monthly: findPlan.yearly;
 
     const addonTotalPrice = addons
     .filter((addon) => addon.checked)
@@ -211,10 +224,10 @@ function App() {
           <p className='description'>You have the option of monthly or yearly billing.</p>
 
           <div className='plan-container'>
-            {planOption.map((option) => (
+            {plans.map((option) => (
               <button
               key={option.value}
-              className={`plan-buttons ${selectedPlan.value === option.value ? 'selected-plan': ''}`}
+              className={`plan-buttons ${option.selected ? 'selected-plan': ''}`}
               onClick={() => handleSelectedPlan(option)}
               >
                 <img src={option.img} alt={option.value}></img>
@@ -279,7 +292,7 @@ function App() {
               <p>{selectedPlan.value} ({isMonthly ? 'Monthly': 'Yearly'})</p>
               <button onClick={handleChange}>Change</button>
             </div>
-            <p>${isMonthly ? `${selectedPlan.monthly}/mo`: `${selectedPlan.yearly}/yr`}</p>
+            <p>${isMonthly ? `${renderSelectedPlan()}/mo`: `${renderSelectedPlan()}/yr`}</p>
           </div>
 
           <ul className='summary-addon'>

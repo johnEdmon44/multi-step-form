@@ -15,8 +15,6 @@ function App() {
     {value: 'Advanced', monthly: 12, yearly: 120, img: '/public/assets/images/icon-advanced.svg', selected: false},
     {value: 'Pro', monthly: 15, yearly: 150, img: '/public/assets/images/icon-pro.svg', selected: false}
   ]);
-  
-  const [summary, setSummary] = useState({});
 
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -55,7 +53,6 @@ function App() {
   
     if (isValid) {
       setStep1(true);
-      setSummary({...summary, personalInfo});
     }
   }
 
@@ -113,15 +110,12 @@ function App() {
 
 
   const handleAddAddon = () => {
-    const checkedAddons = addons.filter((addon) => addon.checked === true);
-    setSummary({...summary, checkedAddons});
     setStep3(true);
   }
 
 
   const handleAddPlan = () => {
     setStep2(true);
-    setSummary({...summary, selectedPlan});
   }
 
 

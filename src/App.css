@@ -344,7 +344,7 @@ input:checked + .slider:before {
 }
 
 
-/* Pick add-ons */
+/*/////////////////////////////////////////////////////////////////////////// pick-addons */
 .checkboxes {
   border: 2px solid var(--primary-pastel-blue);
   cursor: pointer;
@@ -387,4 +387,83 @@ input:checked + .slider:before {
 
 .addon-price {
   color: var(--primary-purplish-blue);
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////// summary */
+.summary-plan {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--primary-pastel-blue);
+  margin-bottom: 1rem;
+}
+
+
+.summary-plan p {
+  color:var(--primary-marine-blue);
+}
+
+
+.summary-plan p:first-child {
+  font-weight: 500;
+}
+
+
+.summary-plan p:last-child {
+  font-weight: 700;
+}
+
+
+.summary-plan button {
+  text-decoration: underline;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  font-weight: 500;
+  color: var(--neutral-cool-gray);
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+
+.summary-addon li{
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+
+.summary-addon li p:first-child {
+  color: var(--neutral-cool-gray);
+  font-weight: 500;
+}
+
+
+.summary-addon li p:last-child {
+  color: var(--primary-marine-blue);
+}
+
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+
+.total p:first-child {
+  color: var(--neutral-cool-gray);
+  font-weight: 500;
+}
+
+
+.total p:last-child {
+  color: var(--primary-purplish-blue);
+  font-weight: 700;
+  font-size: 1.5rem;
 }

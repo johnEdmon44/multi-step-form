@@ -72,7 +72,9 @@ function App() {
 
 
   const handleGoBack = () => {
-    if (step1 && step2) {
+    if (step1 && step2 && step3) {
+      setStep3(false);
+    } else if (step1 && step2) {
       setStep2(false);
     } else if (step1) {
       setStep1(false);
@@ -111,6 +113,23 @@ function App() {
   }
 
 
+  const totalPrice = () => {
+    const planPrice = isMonthly ? selectedPlan.monthly: selectedPlan.yearly;
+
+    const addonTotalPrice = addons
+    .filter((addon) => addon.checked)
+    .reduce((total, addon) => total + (isMonthly ? addon.monthly: addon.yearly), 0);
+
+    return planPrice + addonTotalPrice;
+  }
+
+
+  const handleChange = () => {
+    setStep2(false);
+    setStep3(false);
+  }
+
+
   return (
     <section className='multi-step-container'>
 
@@ -132,7 +151,7 @@ function App() {
         </div>
 
         <div className='step'>
-          <p className={`step-indicator ${step1 && step2 && !step3 ? 'active-form': ''}`}>3</p>
+          <p className={`step-indicator ${step1 && step2 && !step3 ? 'active-step': ''}`}>3</p>
           <div className='step-description'>
             <p>step 3</p>
             <p>add-ons</p>
@@ -246,6 +265,41 @@ function App() {
           <div className='buttons'>
             <button className='prev-btn' onClick={handleGoBack}>Go back</button>
             <button className='next-btn' onClick={handleAddAddon}>Next step</button>
+          </div>
+        </div>
+
+
+        {/* Summary */}
+        <div className={`form-section ${step1 && step2 && step3 && !step4 ? 'active-form': ''}`}>
+          <h1 className='header'>Finishing up</h1>
+          <p className='description'>Double check everything looks OK before confirming</p>
+
+          <div className='summary-plan'>
+            <div>
+              <p>{selectedPlan.value} ({isMonthly ? 'Monthly': 'Yearly'})</p>
+              <button onClick={handleChange}>Change</button>
+            </div>
+            <p>${isMonthly ? `${selectedPlan.monthly}/mo`: `${selectedPlan.yearly}/yr`}</p>
+          </div>
+
+          <ul className='summary-addon'>
+            {addons.filter((addon) => addon.checked)
+            .map((addon, index) => (
+              <li key={index}>
+                <p>{addon.name}</p>
+                <p>+${isMonthly ? `${addon.monthly}/mo`: `${addon.yearly}/yr`}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className='total'>
+            <p>Total ({isMonthly ? 'per month': 'per year'})</p>
+            <p>${totalPrice()}{isMonthly ? '/mo': '/yr'}</p>
+          </div>
+
+          <div className='buttons'>
+            <button className='prev-btn' onClick={handleGoBack}>Go back</button>
+            <button className='next-btn' onClick={() => setStep4(true)}>Next step</button>
           </div>
         </div>
 

@@ -303,6 +303,16 @@ function App() {
           </div>
         </div>
 
+
+        {/* Final */}
+        <div className={`form-section${step1 && step2 && step3 && step4 ? 'active-form': ''}`}>
+          <div className='final-section'>
+            <img src='/public/assets/images/icon-thank-you.svg' alt='check'></img>
+            <h1>Thank you!</h1>
+            <p>Thanks for confirming subscription! We hope you have fun using our platform. If you ever need support,
+              please feel free to email us at at support@loremgaming.com </p>
+          </div>
+        </div>
       </div>
     </section>
   )

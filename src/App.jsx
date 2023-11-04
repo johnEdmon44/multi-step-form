@@ -225,8 +225,11 @@ function App() {
               onClick={() => handleSelectedPlan(option)}
               >
                 <img src={option.img} alt={option.value}></img>
-                <span>{option.value}</span>
-                <span>{isMonthly? `${option.monthly}/mo`: `${option.yearly}/yr`}</span>
+                <div className='plan-price'>
+                  <span>{option.value}</span>
+                  <span>{isMonthly? `${option.monthly}/mo`: `${option.yearly}/yr`}</span>
+                  <span>{isMonthly? '': '2 months free'}</span>
+                </div>
               </button>
             ))}
           </div>

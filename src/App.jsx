@@ -114,16 +114,6 @@ function App() {
   }
 
 
-  const handleAddAddon = () => {
-    setStep3(true);
-  }
-
-
-  const handleAddPlan = () => {
-    setStep2(true);
-  }
-
-
   const totalPrice = () => {
     const findPlan = plans.find(plan => plan.selected);
     const planPrice = isMonthly ? findPlan.monthly: findPlan.yearly;
@@ -252,7 +242,7 @@ function App() {
 
           <div className='buttons'>
             <button className='prev-btn' onClick={handleGoBack}>Go back</button>
-            <button className='next-btn' onClick={handleAddPlan}>Next step</button>
+            <button className='next-btn' onClick={() => setStep2(true)}>Next step</button>
           </div>
         </div>
 
@@ -279,7 +269,7 @@ function App() {
 
           <div className='buttons'>
             <button className='prev-btn' onClick={handleGoBack}>Go back</button>
-            <button className='next-btn' onClick={handleAddAddon}>Next step</button>
+            <button className='next-btn' onClick={() => {setStep3(true)}}>Next step</button>
           </div>
         </div>
 

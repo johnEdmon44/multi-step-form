@@ -28,7 +28,9 @@ function App() {
   const [isMonthly, setIsMonthly] = useState(true);
 
   const handleAddPersonalInfo = () => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     let isValid = true;
+
 
     if(personalInfo.name === '') {
       setNameError('This field is required');
@@ -39,6 +41,9 @@ function App() {
   
     if(personalInfo.email === '') {
       setEmailError('This field is required');
+      isValid = false;
+    } else if (!personalInfo.email.match(emailRegex)) {
+      setEmailError('Please enter a valid email address');
       isValid = false;
     } else {
       setEmailError('');
